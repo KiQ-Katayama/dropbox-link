@@ -42,9 +42,9 @@ echo ============================================================
 echo   Setup complete!
 echo.
 echo   Usage:
-echo     1. Right-click a Dropbox folder
-echo        -> "Dropbox link copy"
-echo     2. Paste the link in Slack
-echo     3. Click the link -> opens in Explorer
+echo     1. Dropbox フォルダを右クリック
+echo        -> 「Dropbox ローカルリンクをコピー」
+echo     2. Slack にリンクを貼り付け
+echo     3. リンクをクリック -> エクスプローラーで開く
 echo ============================================================
 pause

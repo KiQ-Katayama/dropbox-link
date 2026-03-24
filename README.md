@@ -27,7 +27,7 @@ GitHub Pages を有効化：
 
 1. リポジトリの **Settings** > **Pages** を開く
 2. Source: **Deploy from a branch**
-3. Branch: `main`、フォルダ: `/ (root)`
+3. Branch: `master`、フォルダ: `/ (root)`
 4. Save
 
 `https://YOUR-ORG.github.io/dropbox-link/` でページが公開されます。
@@ -54,7 +54,7 @@ $BaseUrl = "https://YOUR-ORG.github.io/dropbox-link/"
 ### フォルダを共有する
 
 1. Dropbox 内のフォルダを右クリック
-2. **「Dropbox link copy」** をクリック
+2. **「Dropbox ローカルリンクをコピー」** をクリック
 3. Slack / メール / チャットに貼り付け
 
 Slack でのリンク例：
@@ -64,7 +64,7 @@ https://your-org.github.io/dropbox-link/#Team%20Dropbox/Projects/Design
 
 ### 共有リンクを開く
 
-クリックするだけ。ブラウザが一瞬開き、エクスプローラーでフォルダが表示されます。
+クリックするだけ。ブラウザタブが開き、エクスプローラーでフォルダが表示されます。
 
 自動で開かない場合は、ページに以下が表示されます：
 - **「Open in Explorer」** ボタン（再試行）
@@ -89,7 +89,7 @@ dropbox-link/
 
 | 症状 | 対処法 |
 |------|--------|
-| 右クリックメニューに「Dropbox link copy」が出ない | エクスプローラーを再起動（タスクマネージャー > エクスプローラー > 再起動） |
+| 右クリックメニューに「Dropbox ローカルリンクをコピー」が出ない | エクスプローラーを再起動（タスクマネージャー > エクスプローラー > 再起動） |
 | ブラウザは開くがエクスプローラーが開かない | `scripts/setup.bat` を管理者として再実行 |
 | 「Folder not found」エラー | フォルダが同期済みか確認（「オンラインのみ」になっていないか） |
 | URL に `YOUR-ORG` が残っている | `C:\Tools\DropboxLocalLink\` 内の `copy-dropbox-link.ps1` を編集 |
