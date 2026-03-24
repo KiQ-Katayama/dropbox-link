@@ -13,7 +13,7 @@ Windows Registry Editor Version 5.00
 
 ; Right-click context menu: folder background
 [HKEY_CLASSES_ROOT\Directory\Background\shell\CopyDropboxLink]
-@="Dropbox link copy"
+@="Dropbox ローカルリンクをコピー"
 "Icon"="imageres.dll,3"
 
 [HKEY_CLASSES_ROOT\Directory\Background\shell\CopyDropboxLink\command]
@@ -21,7 +21,7 @@ Windows Registry Editor Version 5.00
 
 ; Right-click context menu: folder itself
 [HKEY_CLASSES_ROOT\Directory\shell\CopyDropboxLink]
-@="Dropbox link copy"
+@="Dropbox ローカルリンクをコピー"
 "Icon"="imageres.dll,3"
 
 [HKEY_CLASSES_ROOT\Directory\shell\CopyDropboxLink\command]

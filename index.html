@@ -77,17 +77,11 @@
 
   window.location.href = dropboxUri;
 
-  // Try to close the tab after redirect
-  setTimeout(function() { window.close(); }, 1000);
-
   setTimeout(function() {
     document.getElementById('status').textContent =
       'If the folder did not open automatically:';
     document.getElementById('buttons').style.display = 'block';
     document.getElementById('openBtn').href = dropboxUri;
-    document.getElementById('openBtn').addEventListener('click', function() {
-      setTimeout(function() { window.close(); }, 500);
-    });
     document.getElementById('help').textContent =
       'Or copy the path above and paste into Explorer address bar or Win+R.';
   }, 1500);
@@ -98,7 +92,9 @@
 function copyPath() {
   navigator.clipboard.writeText(window._winPath).then(function() {
     document.getElementById('copyBtn').textContent = 'Copied!';
-    setTimeout(function() { window.close(); }, 1000);
+    setTimeout(function() {
+      document.getElementById('copyBtn').textContent = 'Copy path';
+    }, 2000);
   });
 }
 </script>
