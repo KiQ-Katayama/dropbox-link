@@ -1,0 +1,28 @@
+Windows Registry Editor Version 5.00
+
+; dropbox:// URI handler
+[HKEY_CLASSES_ROOT\dropbox]
+@="URL:Dropbox Local Path"
+"URL Protocol"=""
+
+[HKEY_CLASSES_ROOT\dropbox\DefaultIcon]
+@="explorer.exe,0"
+
+[HKEY_CLASSES_ROOT\dropbox\shell\open\command]
+@="powershell.exe -ExecutionPolicy Bypass -WindowStyle Hidden -File \"C:\\Tools\\DropboxLocalLink\\open-dropbox-path.ps1\" \"%1\""
+
+; Right-click context menu: folder background
+[HKEY_CLASSES_ROOT\Directory\Background\shell\CopyDropboxLink]
+@="Dropbox link copy"
+"Icon"="imageres.dll,3"
+
+[HKEY_CLASSES_ROOT\Directory\Background\shell\CopyDropboxLink\command]
+@="powershell.exe -ExecutionPolicy Bypass -WindowStyle Hidden -File \"C:\\Tools\\DropboxLocalLink\\copy-dropbox-link.ps1\" \"%V\""
+
+; Right-click context menu: folder itself
+[HKEY_CLASSES_ROOT\Directory\shell\CopyDropboxLink]
+@="Dropbox link copy"
+"Icon"="imageres.dll,3"
+
+[HKEY_CLASSES_ROOT\Directory\shell\CopyDropboxLink\command]
+@="powershell.exe -ExecutionPolicy Bypass -WindowStyle Hidden -File \"C:\\Tools\\DropboxLocalLink\\copy-dropbox-link.ps1\" \"%V\""
