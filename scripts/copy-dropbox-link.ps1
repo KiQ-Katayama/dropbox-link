@@ -5,7 +5,7 @@ Add-Type -AssemblyName System.Windows.Forms
 # ============================================================
 # CONFIGURE: your GitHub Pages URL
 # ============================================================
-$BaseUrl = "https://YOUR-ORG.github.io/dropbox-link/"
+$BaseUrl = "https://kiq-katayama.github.io/dropbox-link/"
 
 # --- Get ALL Dropbox root paths from info.json ---
 $dbRoots = @()
