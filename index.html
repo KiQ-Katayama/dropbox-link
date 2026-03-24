@@ -69,7 +69,7 @@
   }
 
   var relativePath = decodeURIComponent(hash);
-  var winPath = 'C:\\KiQ Dropbox\\' + relativePath.replace(/\//g, '\\');
+  var winPath = relativePath.replace(/\//g, '\\');
   var dropboxUri = 'dropbox://' + hash;
 
   document.getElementById('pathDisplay').textContent = winPath;

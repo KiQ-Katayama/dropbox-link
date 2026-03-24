@@ -59,8 +59,11 @@ if (-not $matchedRoot) {
 }
 
 # --- Build https:// URL with hash fragment ---
+# Include the Dropbox folder name as a key
+# so recipients can resolve the path regardless of install location
+$dbFolderName = Split-Path $matchedRoot -Leaf
 $relative = $folder.Substring($matchedRoot.Length).TrimStart('\')
-$parts = $relative -split '\\'
+$parts = @($dbFolderName) + ($relative -split '\\')
 $encoded = ($parts | ForEach-Object { [Uri]::EscapeDataString($_) }) -join '/'
 $url = "${BaseUrl}#${encoded}"
 

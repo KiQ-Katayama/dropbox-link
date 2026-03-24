@@ -37,14 +37,36 @@ foreach ($r in $dbRoots) {
 }
 $allRoots = $allRoots | Select-Object -Unique
 
-# --- Try each root until we find the folder ---
+# --- Split the first path component as Dropbox folder name key ---
+$pathParts = $relativePath -split '\\', 2
+$dbFolderKey = $pathParts[0]
+$subPath = if ($pathParts.Count -gt 1) { $pathParts[1] } else { "" }
+
+# --- Try to match by folder name first, then fall back to all roots ---
 $found = $false
+
+# Priority: match root whose folder name equals the key
 foreach ($root in $allRoots) {
-    $fullPath = Join-Path $root $relativePath
-    if (Test-Path $fullPath) {
-        Start-Process explorer.exe -ArgumentList "`"$fullPath`""
-        $found = $true
-        break
+    $folderName = Split-Path $root -Leaf
+    if ($folderName -eq $dbFolderKey) {
+        $fullPath = if ($subPath) { Join-Path $root $subPath } else { $root }
+        if (Test-Path $fullPath) {
+            Start-Process explorer.exe -ArgumentList "`"$fullPath`""
+            $found = $true
+            break
+        }
+    }
+}
+
+# Fallback: try the full relative path against all roots (backwards compat)
+if (-not $found) {
+    foreach ($root in $allRoots) {
+        $fullPath = Join-Path $root $relativePath
+        if (Test-Path $fullPath) {
+            Start-Process explorer.exe -ArgumentList "`"$fullPath`""
+            $found = $true
+            break
+        }
     }
 }
 

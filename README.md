@@ -1,108 +1,101 @@
 # dropbox-link
 
-Dropbox folder links that are **clickable in Slack** and open directly in Windows Explorer.
+Dropbox フォルダへのリンクを **Slack でクリック可能** にし、Windows エクスプローラーで直接開くツール。
 
-## How it works
+## 仕組み
 
 ```
-Right-click folder  -->  Copies https:// link  -->  Paste in Slack (clickable!)
+フォルダを右クリック --> https:// リンクをコピー --> Slack に貼り付け（クリック可能！）
                                                           |
-Click link  -->  Browser opens index.html  -->  Redirects to dropbox://
+リンクをクリック --> ブラウザで index.html を開く --> dropbox:// にリダイレクト
                                                           |
-                              dropbox:// URI handler  -->  Explorer opens the folder
+                              dropbox:// URI ハンドラ --> エクスプローラーでフォルダが開く
 ```
 
-## Setup
+リンクにはDropboxフォルダ名（例: `Team Dropbox`）がキーとして含まれるため、各ユーザーのインストール先が異なっていても正しいパスに解決されます。
 
-### 1. Deploy this repository (admin, once)
+## セットアップ
+
+### 1. リポジトリのデプロイ（管理者が1回）
 
 ```bash
 git clone https://github.com/YOUR-ORG/dropbox-link.git
 cd dropbox-link
 ```
 
-Enable GitHub Pages:
+GitHub Pages を有効化：
 
-1. Go to repository **Settings** > **Pages**
+1. リポジトリの **Settings** > **Pages** を開く
 2. Source: **Deploy from a branch**
-3. Branch: `main`, folder: `/ (root)`
+3. Branch: `main`、フォルダ: `/ (root)`
 4. Save
 
-Your page will be live at `https://YOUR-ORG.github.io/dropbox-link/`
+`https://YOUR-ORG.github.io/dropbox-link/` でページが公開されます。
 
-### 2. Configure the URL (admin, once)
+### 2. URL の設定（管理者が1回）
 
-Edit `scripts/copy-dropbox-link.ps1`:
+`scripts/copy-dropbox-link.ps1` を編集：
 
 ```powershell
-# Change this line:
+# この行を変更：
 $BaseUrl = "https://YOUR-ORG.github.io/dropbox-link/"
 ```
 
-Replace `YOUR-ORG` with your actual GitHub org or username. Commit and push.
+`YOUR-ORG` を実際の GitHub org またはユーザー名に置き換えて、コミット＆プッシュ。
 
-### 3. Move Dropbox folder (everyone)
+### 3. セットアップの実行（全員）
 
-1. Taskbar > Dropbox icon > Account icon > **Preferences**
-2. **Sync** tab > **Dropbox folder location** > **Move...**
-3. Select `C:\` > OK
-4. Wait for sync to complete
+1. このリポジトリをクローンまたはダウンロード
+2. `scripts/setup.bat` を右クリック > **管理者として実行**
+3. Win11 の場合：エクスプローラーが再起動します（クラシック右クリックメニューが有効化されます）
 
-> Sync pauses during the move. No files will be lost.
+## 使い方
 
-### 4. Run setup (everyone)
+### フォルダを共有する
 
-1. Clone or download this repo
-2. Right-click `scripts/setup.bat` > **Run as administrator**
-3. On Win11: Explorer restarts (classic right-click menu is enabled)
+1. Dropbox 内のフォルダを右クリック
+2. **「Dropbox link copy」** をクリック
+3. Slack / メール / チャットに貼り付け
 
-## Usage
-
-### Share a folder
-
-1. Right-click a folder inside Dropbox
-2. Click **"Dropbox link copy"**
-3. Paste in Slack / email / chat
-
-Example link in Slack:
+Slack でのリンク例：
 ```
-https://your-org.github.io/dropbox-link/#社員/10_ワークスペース/片山
+https://your-org.github.io/dropbox-link/#Team%20Dropbox/Projects/Design
 ```
 
-### Open a shared link
+### 共有リンクを開く
 
-Just click it. Browser opens briefly, then the folder opens in Explorer.
+クリックするだけ。ブラウザが一瞬開き、エクスプローラーでフォルダが表示されます。
 
-If Explorer doesn't launch automatically, the page shows:
-- **"Open in Explorer"** button to retry
-- **"Copy path"** button to copy the Windows path for `Win+R`
+自動で開かない場合は、ページに以下が表示されます：
+- **「Open in Explorer」** ボタン（再試行）
+- **「Copy path」** ボタン（パスをコピーして `Win+R` で開く）
 
-## File structure
+## ファイル構成
 
 ```
 dropbox-link/
-├── index.html                  # GitHub Pages redirector
-├── README.md                   # This file
+├── index.html                    # GitHub Pages リダイレクタ
+├── README.md                     # このファイル
 ├── .gitignore
 └── scripts/
-    ├── setup.bat               # Installer (run as admin)
-    ├── uninstall.bat           # Uninstaller (run as admin)
-    ├── register-dropbox-uri.reg  # Registry entries
-    ├── copy-dropbox-link.ps1   # Right-click > copies https:// link
-    └── open-dropbox-path.ps1   # dropbox:// URI handler
+    ├── setup.bat                 # インストーラ（管理者実行）
+    ├── uninstall.bat             # アンインストーラ（管理者実行）
+    ├── register-dropbox-uri.reg  # レジストリエントリ
+    ├── copy-dropbox-link.ps1     # 右クリック → https:// リンクをコピー
+    └── open-dropbox-path.ps1     # dropbox:// URI ハンドラ
 ```
 
-## Troubleshooting
+## トラブルシューティング
 
-| Problem | Solution |
-|---------|----------|
-| "Dropbox link copy" not in right-click menu | Restart Explorer (Task Manager > Explorer > Restart) |
-| Browser opens but Explorer doesn't | Re-run `scripts/setup.bat` as administrator |
-| "Folder not found" error | Check that the folder is synced (not "online only") |
-| URL still shows `YOUR-ORG` | Edit `copy-dropbox-link.ps1` in `C:\Tools\DropboxLocalLink\` |
+| 症状 | 対処法 |
+|------|--------|
+| 右クリックメニューに「Dropbox link copy」が出ない | エクスプローラーを再起動（タスクマネージャー > エクスプローラー > 再起動） |
+| ブラウザは開くがエクスプローラーが開かない | `scripts/setup.bat` を管理者として再実行 |
+| 「Folder not found」エラー | フォルダが同期済みか確認（「オンラインのみ」になっていないか） |
+| URL に `YOUR-ORG` が残っている | `C:\Tools\DropboxLocalLink\` 内の `copy-dropbox-link.ps1` を編集 |
 
-## Uninstall
+## アンインストール
 
-Right-click `scripts/uninstall.bat` > **Run as administrator**
+`scripts/uninstall.bat` を右クリック > **管理者として実行**
 
-On Win11 this also restores the modern right-click menu.
+Win11 の場合、モダン右クリックメニューも復元されます。

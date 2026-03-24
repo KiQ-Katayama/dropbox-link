@@ -11,11 +11,7 @@
       "WebFetch",
       "WebSearch",
       "Agent",
-      "TodoWrite",
-      "Bash(export PATH=\"$PATH:/c/Program Files/GitHub CLI\")",
-      "Bash(git init:*)",
-      "Bash(git add:*)",
-      "Bash(git commit:*)"
+      "TodoWrite"
     ]
   }
 }
