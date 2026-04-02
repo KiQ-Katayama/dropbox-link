@@ -19,7 +19,7 @@ Dropbox フォルダへのリンクを **Slack でクリック可能** にし、
 ### 1. リポジトリのデプロイ（管理者が1回）
 
 ```bash
-git clone https://github.com/YOUR-ORG/dropbox-link.git
+git clone https://github.com/KiQ-Robotics-Corp/dropbox-link.git
 cd dropbox-link
 ```
 
@@ -30,7 +30,7 @@ GitHub Pages を有効化：
 3. Branch: `master`、フォルダ: `/ (root)`
 4. Save
 
-`https://YOUR-ORG.github.io/dropbox-link/` でページが公開されます。
+`https://KiQ-Robotics-Corp.github.io/dropbox-link/` でページが公開されます。
 
 ### 2. URL の設定（管理者が1回）
 
@@ -38,10 +38,10 @@ GitHub Pages を有効化：
 
 ```powershell
 # この行を変更：
-$BaseUrl = "https://YOUR-ORG.github.io/dropbox-link/"
+$BaseUrl = "https://KiQ-Robotics-Corp.github.io/dropbox-link/"
 ```
 
-`YOUR-ORG` を実際の GitHub org またはユーザー名に置き換えて、コミット＆プッシュ。
+`KiQ-Robotics-Corp` が GitHub org として設定済みです。コミット＆プッシュ。
 
 ### 3. セットアップの実行（全員）
 
@@ -59,7 +59,7 @@ $BaseUrl = "https://YOUR-ORG.github.io/dropbox-link/"
 
 Slack でのリンク例：
 ```
-https://your-org.github.io/dropbox-link/#Team%20Dropbox/Projects/Design
+https://KiQ-Robotics-Corp.github.io/dropbox-link/#Team%20Dropbox/Projects/Design
 ```
 
 ### 共有リンクを開く
@@ -92,7 +92,7 @@ dropbox-link/
 | 右クリックメニューに「Dropbox ローカルリンクをコピー」が出ない | エクスプローラーを再起動（タスクマネージャー > エクスプローラー > 再起動） |
 | ブラウザは開くがエクスプローラーが開かない | `scripts/setup.bat` を管理者として再実行 |
 | 「Folder not found」エラー | フォルダが同期済みか確認（「オンラインのみ」になっていないか） |
-| URL に `YOUR-ORG` が残っている | `C:\Tools\DropboxLocalLink\` 内の `copy-dropbox-link.ps1` を編集 |
+| URL が古いまま | `C:\Tools\DropboxLocalLink\` 内の `copy-dropbox-link.ps1` の `$BaseUrl` を確認 |
 
 ## アンインストール
 
